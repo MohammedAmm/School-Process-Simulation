@@ -11,8 +11,9 @@ Rails.application.routes.draw do
       post "teachers/signup", to: "teachers/registerations#create"
       post "teachers/login", to: "teachers/sessions#create"
       delete "teachers/logout", to: "teachers/sessions#destroy"
-      put "teachers/login", to: "admins/students#update"
-      resources :courses, controller: 'courses/resources', only: [:index, :show, :create, :update]
+      put "admins/students/:id", to: "admins/students#update"
+      put "admins/courses/:id", to: "courses#update"
+      resources :courses, controller: 'courses/resources', only: [:index, :show, :create]
       resources :grades , controller: 'grades/resources', only: [:index, :show, :create]
     end
     resources :students , controller: 'students', only: [:index]
