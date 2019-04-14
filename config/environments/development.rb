@@ -40,19 +40,10 @@ config.action_mailer.smtp_settings = {
   address:              'smtp.mailtrap.io',
   port:                 2525,
   domain:               'example.com',
-  user_name:            '471a1a9a56277a',
-  password:             '393eb81296daf3',
+  user_name:            'xxx',
+  password:             'xxx',
   authentication:       'plain',
   enable_starttls_auto: true }
-# config.action_mailer.smtp_settings = {
-#   address:              'smtp.gmail.com',
-#   port:                 587,
-#   domain:               'gmail.com',
-#   user_name:            'mome400048@gmail.com',
-#   password:             'wannatodie',
-#   authentication:       :plain,
-#   enable_starttls_auto: true
-# }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
