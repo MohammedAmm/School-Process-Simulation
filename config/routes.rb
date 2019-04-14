@@ -13,10 +13,34 @@ Rails.application.routes.draw do
       # delete "teachers/logout", to: "teachers/sessions#destroy"
       # put "admins/students/:id", to: "admins/students#update"
       # put "admins/courses/:id", to: "courses#update"
-      devise_for :students,:path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers: { registrations: 'students/registrations' , sessions: 'students/sessions'}
-      devise_for :admins,:path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers: { registrations: 'admins/registrations' , sessions: 'admins/sessions'}
-      devise_for :teachers,:path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers: { registrations: 'teachers/registrations' , sessions: 'teachers/sessions'}
+      # devise_for :students, skip:[:passwords],:path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers: { registrations: 'students/registrations' , sessions: 'students/sessions'}
+      # devise_for :admins,  skip:[:passwords],:path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers: { registrations: 'admins/registrations' , sessions: 'admins/sessions'}
+      # devise_for :teachers,  skip:[:passwords],:path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }, controllers: { registrations: 'teachers/registrations' , sessions: 'teachers/sessions'}
+      namespace :students do
+        devise_scope :students do
+          post "/login", :to => 'sessions#create'
+          delete "/logout", :to => 'sessions#destroy'
+          post "/register", :to => 'registrations#create'
 
+        end
+      end   
+      namespace :teachers do
+        devise_scope :teachers do
+          post "/login", :to => 'sessions#create'
+          delete "/logout", :to => 'sessions#destroy'
+          post "/register", :to => 'registrations#create'
+
+        end
+      end
+      namespace :admins do
+        devise_scope :admins do
+          post "/login", :to => 'sessions#create'
+          delete "/logout", :to => 'sessions#destroy'
+          post "/register", :to => 'registrations#create'
+
+        end
+      end
+      
 
       # devise_for :students, :path => 'students', 
 
