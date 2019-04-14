@@ -2,14 +2,22 @@ Rails.application.routes.draw do
   #This 
   root 'home#index'  
     scope '/api' do
-      devise_for :admins, controllers: {sessions: 'admins/sessions',registrations: 'admins/sessions'},
-      path: 'admins', path_names: {sign_in: 'login', sign_out: 'logout', sign_up:'register'}    
+      # devise_for :admins, controllers: {sessions: 'admins/sessions',registrations: 'admins/sessions'},
+      # path: 'admins', path_names: {sign_in: 'login', sign_out: 'logout', sign_up:'register'}    
+      devise_for :admins, path_names: {
+        sign_in: 'login', sign_out: 'logout',
+        registration: 'register'
+      },controllers: { registrations: 'admins/registrations' , sessions: 'admins/sessions'}
 
-      devise_for :students, controllers: {sessions: 'students/sessions',registrations: 'students/sessions'},
-      path: 'students', path_names: {sign_in: 'login', sign_out: 'logout', sign_up:'register'} 
-    
-      devise_for :teachers, controllers: {sessions: 'teachers/sessions',registrations: 'teachers/sessions'},
-      path: 'teachers', path_names: {sign_in: 'login', sign_out: 'logout', sign_up:'register'}
+      devise_for :teachers, path_names: {
+        sign_in: 'login', sign_out: 'logout',
+        registration: 'register'
+      },controllers: { registrations: 'teachers/registrations' , sessions: 'teachers/sessions'}
+      
+      devise_for :students, path_names: {
+        sign_in: 'login', sign_out: 'logout',
+        registration: 'register'
+      },controllers: { registrations: 'students/registrations' , sessions: 'students/sessions'}
 
       # devise_for :students, :path => 'students', 
       resources :courses, controller: 'courses/resources', only: [:index, :show, :create]
